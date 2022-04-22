@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Map;
-
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,13 +36,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class WeatherData {
-        //Map<String, String> headers;
         String timezone;
         String temperature;
         String pressure;
         String humidity;
         String weatherState;
         String weatherDescription;
+
+        public void parseOneCallApiJson(JsonObject json){
+            JsonObject current = json.getAsJsonObject("current");
+            JsonObject weather = current.getAsJsonArray("weather").get(0).getAsJsonObject();
+            timezone = json.get("timezone").getAsString();
+            temperature = current.get("temp").getAsString();
+            pressure = current.get("pressure").getAsString();
+            humidity = current.get("humidity").getAsString();
+            weatherState = weather.get("main").getAsString();
+            weatherDescription = weather.get("description").getAsString();
+        }
+        @Override
+        public String toString(){
+            return "timezone: " + timezone +"\ntemperature: " + temperature + "\npressure: " + pressure +"\nhumidity: " + humidity
+                    + "\nweatherState: " + weatherState + "\nweatherDescription: " + weatherDescription;
+        }
     }
 
     private class GetJSONfromURL extends AsyncTask<String, String, WeatherData> {
@@ -62,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 InputStreamReader reader = new InputStreamReader(url.openStream());
                 JsonObject json = new Gson().fromJson(reader, JsonObject.class);
                 WeatherData weatherData = new WeatherData();
-                weatherData.temperature = json.getAsJsonObject("current").get("temp").toString();
+                weatherData.parseOneCallApiJson(json);
                 return weatherData;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -74,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(WeatherData weatherData) {
-            main_info.setText(weatherData.temperature);
+            main_info.setText(weatherData.toString());
         }
 
     }
