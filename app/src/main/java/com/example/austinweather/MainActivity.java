@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,43 +22,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        main_info = findViewById(R.id.main_info);
+        main_info = findViewById(R.id.tempC);
         button = findViewById(R.id.button);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new GetJSONfromURL().execute();
-            }
-        });
+        button.setOnClickListener(view -> new fetchWeatherData().execute());
     }
 
-    private class WeatherData {
-        String timezone;
-        String temperature;
-        String pressure;
-        String humidity;
-        String weatherState;
-        String weatherDescription;
 
-        public void parseOneCallApiJson(JsonObject json){
-            JsonObject current = json.getAsJsonObject("current");
-            JsonObject weather = current.getAsJsonArray("weather").get(0).getAsJsonObject();
-            timezone = json.get("timezone").getAsString();
-            temperature = current.get("temp").getAsString();
-            pressure = current.get("pressure").getAsString();
-            humidity = current.get("humidity").getAsString();
-            weatherState = weather.get("main").getAsString();
-            weatherDescription = weather.get("description").getAsString();
-        }
-        @Override
-        public String toString(){
-            return "timezone: " + timezone +"\ntemperature: " + temperature + "\npressure: " + pressure +"\nhumidity: " + humidity
-                    + "\nweatherState: " + weatherState + "\nweatherDescription: " + weatherDescription;
-        }
-    }
-
-    private class GetJSONfromURL extends AsyncTask<String, String, WeatherData> {
+    private class fetchWeatherData extends AsyncTask<String, String, WeatherData> {
 
         protected void onPreExecute() {
             super.onPreExecute();
@@ -72,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 URL url = new URL("https://api.openweathermap.org/data/2.5/onecall?lat=30.267153&lon=-97.743057&exclude=minutely&appid=25a117ed164148fa411a7c4348327156");
                 InputStreamReader reader = new InputStreamReader(url.openStream());
-                JsonObject json = new Gson().fromJson(reader, JsonObject.class);
-                WeatherData weatherData = new WeatherData();
-                weatherData.parseOneCallApiJson(json);
+                WeatherData weatherData = new Gson().fromJson(reader, WeatherData.class);
                 return weatherData;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
