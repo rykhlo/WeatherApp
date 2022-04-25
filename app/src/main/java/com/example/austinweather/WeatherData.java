@@ -63,9 +63,20 @@ public class WeatherData {
     public String getCurrentWindSpeed() { return current.wind_speed + "m/s"; }
 
     public String getCurrentPressure() { return current.pressure + "hPa"; }
+
+    public Double getHourlyTemp(int index){
+        return hourly.get(index).temp;
+    }
+    public Long getHourlyTimeStamp(int index){
+        return hourly.get(index).dt;
+    }
+    public String getHourlyIcon(int index){
+        String icon = hourly.get(index).weather.get(0).icon;
+        return "_" + icon.substring(0, icon.length() - 1) + "d";
+    }
+
     public String getCurrentIcon() {
         String icon = current.weather.get(0).icon;
-        System.out.println(icon);
         return "_" + icon.substring(0, icon.length() - 1) + "d";
     }
 

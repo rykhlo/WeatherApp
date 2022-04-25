@@ -37,7 +37,7 @@ public class Helpers {
             URL url = new URL("https://api.openweathermap.org/data/2.5/onecall?lat=" + cityGeolocation.lat + "&lon=" + cityGeolocation.lon + "&exclude=minutely&appid=" + APIkey);
             InputStreamReader reader = new InputStreamReader(url.openStream());
             WeatherData weatherData = new Gson().fromJson(reader, WeatherData.class);
-            weatherData.setCity(city);
+            weatherData.setCity(city.replaceAll("\\s+", ""));
             return weatherData;
         } catch (
                 MalformedURLException e) {
@@ -79,6 +79,13 @@ public class Helpers {
     public static String getTimeFromUTC(Long dt, String timezone){
         Date date = new Date(dt * 1000);
         DateFormat format = new SimpleDateFormat("hh:mm aa");
+        format.setTimeZone(TimeZone.getTimeZone(timezone));
+        String formatted = format.format(date);
+        return formatted;
+    }
+    public static String getTimeFromUTCShort(Long dt, String timezone){
+        Date date = new Date(dt * 1000);
+        DateFormat format = new SimpleDateFormat("hh aa");
         format.setTimeZone(TimeZone.getTimeZone(timezone));
         String formatted = format.format(date);
         return formatted;

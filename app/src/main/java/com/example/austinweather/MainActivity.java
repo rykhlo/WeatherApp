@@ -34,6 +34,22 @@ public class MainActivity extends AppCompatActivity {
     private ImageView weatherIconImageView;
     private AutoCompleteTextView citySearchField;
 
+    private TextView hourlyTimeTextView1;
+    private TextView hourlyTimeTextView2;
+    private TextView hourlyTimeTextView3;
+    private TextView hourlyTimeTextView4;
+    private TextView hourlyTimeTextView5;
+    private TextView hourlyTempTextView1;
+    private TextView hourlyTempTextView2;
+    private TextView hourlyTempTextView3;
+    private TextView hourlyTempTextView4;
+    private TextView hourlyTempTextView5;
+    private ImageView hourlyIconImageView1;
+    private ImageView hourlyIconImageView2;
+    private ImageView hourlyIconImageView3;
+    private ImageView hourlyIconImageView4;
+    private ImageView hourlyIconImageView5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +65,21 @@ public class MainActivity extends AppCompatActivity {
         weatherDescriptionTextView = findViewById(R.id.weatherDescriptionTextView);
         weatherIconImageView = findViewById(R.id.weatherIconImageView);
         currentTimeTextView = findViewById(R.id.currentTimeTextView);
+        hourlyTimeTextView1 = findViewById(R.id.hourlyTimeTextView1);
+        hourlyTimeTextView2 = findViewById(R.id.hourlyTimeTextView2);
+        hourlyTimeTextView3 = findViewById(R.id.hourlyTimeTextView3);
+        hourlyTimeTextView4 = findViewById(R.id.hourlyTimeTextView4);
+        hourlyTimeTextView5 = findViewById(R.id.hourlyTimeTextView5);
+        hourlyTempTextView1 = findViewById(R.id.hourlyTempTextView1);
+        hourlyTempTextView2 = findViewById(R.id.hourlyTempTextView2);
+        hourlyTempTextView3 = findViewById(R.id.hourlyTempTextView3);
+        hourlyTempTextView4 = findViewById(R.id.hourlyTempTextView4);
+        hourlyTempTextView5 = findViewById(R.id.hourlyTempTextView5);
+        hourlyIconImageView1 = findViewById(R.id.hourlyIconImageView1);
+        hourlyIconImageView2 = findViewById(R.id.hourlyIconImageView2);
+        hourlyIconImageView3 = findViewById(R.id.hourlyIconImageView3);
+        hourlyIconImageView4 = findViewById(R.id.hourlyIconImageView4);
+        hourlyIconImageView5 = findViewById(R.id.hourlyIconImageView5);
         citySearchButton.setOnClickListener(view -> {
             //display toast message if city input is invalid
             if(citySearchField.getText().toString().trim().equals("")) {
@@ -80,9 +111,29 @@ public class MainActivity extends AppCompatActivity {
                 humidityTextView.setText(weatherData.getCurrentHumidity());
                 windSpeedTextView.setText(weatherData.getCurrentWindSpeed());
                 pressureTextView.setText(weatherData.getCurrentPressure());
-                Context context = weatherIconImageView.getContext();
-                int id = context.getResources().getIdentifier(weatherData.getCurrentIcon(), "drawable", context.getPackageName());
-                weatherIconImageView.setImageResource(id);
+
+                weatherIconImageView.setImageResource(weatherIconImageView.getContext().getResources().getIdentifier(weatherData.getCurrentIcon(), "drawable", weatherIconImageView.getContext().getPackageName()));
+
+                hourlyTimeTextView1.setText(Helpers.getTimeFromUTC(weatherData.getHourlyTimeStamp(1), weatherData.getTimezone()));
+                hourlyTimeTextView2.setText(Helpers.getTimeFromUTC(weatherData.getHourlyTimeStamp(2), weatherData.getTimezone()));
+                hourlyTimeTextView3.setText(Helpers.getTimeFromUTC(weatherData.getHourlyTimeStamp(3), weatherData.getTimezone()));
+                hourlyTimeTextView4.setText(Helpers.getTimeFromUTC(weatherData.getHourlyTimeStamp(4), weatherData.getTimezone()));
+                hourlyTimeTextView5.setText(Helpers.getTimeFromUTC(weatherData.getHourlyTimeStamp(5), weatherData.getTimezone()));
+
+                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(1)));
+                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(2)));
+                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(3)));
+                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(4)));
+                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(5)));
+
+                hourlyIconImageView1.setImageResource(hourlyIconImageView1.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(1), "drawable", hourlyIconImageView1.getContext().getPackageName()));
+                hourlyIconImageView2.setImageResource(hourlyIconImageView2.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(2), "drawable", hourlyIconImageView2.getContext().getPackageName()));
+                hourlyIconImageView3.setImageResource(hourlyIconImageView3.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(3), "drawable", hourlyIconImageView3.getContext().getPackageName()));
+                hourlyIconImageView4.setImageResource(hourlyIconImageView4.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(4), "drawable", hourlyIconImageView4.getContext().getPackageName()));
+                hourlyIconImageView5.setImageResource(hourlyIconImageView5.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(5), "drawable", hourlyIconImageView5.getContext().getPackageName()));
+
+
+
 
             }
             catch (NullPointerException e){
