@@ -28,6 +28,7 @@ public class WeatherData {
 
     private class DailyWeather{
         DayTemp temp;
+        private Long dt;
         List<WeatherInfo> weather;
 
         private class DayTemp{
@@ -64,21 +65,33 @@ public class WeatherData {
 
     public String getCurrentPressure() { return current.pressure + "hPa"; }
 
+    public String getCurrentIcon() {
+        String icon = current.weather.get(0).icon;
+        return "_" + icon.substring(0, icon.length() - 1) + "d";
+    }
+
     public Double getHourlyTemp(int index){
         return hourly.get(index).temp;
     }
+
     public Long getHourlyTimeStamp(int index){
         return hourly.get(index).dt;
     }
+
     public String getHourlyIcon(int index){
         String icon = hourly.get(index).weather.get(0).icon;
         return "_" + icon.substring(0, icon.length() - 1) + "d";
     }
 
-    public String getCurrentIcon() {
-        String icon = current.weather.get(0).icon;
+    public Long getDailyTimeStamp(int index){ return daily.get(index).dt; }
+
+    public String getDailyMinMaxTemp(int index){ return Helpers.kelvinToF(daily.get(index).temp.min) + " - " + Helpers.kelvinToF(daily.get(index).temp.max); }
+
+    public String getDailyIcon(int index) {
+        String icon = daily.get(index).weather.get(0).icon;
         return "_" + icon.substring(0, icon.length() - 1) + "d";
     }
+
 
 
     @Override

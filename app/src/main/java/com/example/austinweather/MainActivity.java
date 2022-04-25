@@ -50,6 +50,32 @@ public class MainActivity extends AppCompatActivity {
     private ImageView hourlyIconImageView4;
     private ImageView hourlyIconImageView5;
 
+    private TextView dailyTextView1;
+    private TextView dailyTextView2;
+    private TextView dailyTextView3;
+    private TextView dailyTextView4;
+    private TextView dailyTextView5;
+    private TextView dailyTextView6;
+    private TextView dailyTextView7;
+
+    private TextView dailyTempTextView1;
+    private TextView dailyTempTextView2;
+    private TextView dailyTempTextView3;
+    private TextView dailyTempTextView4;
+    private TextView dailyTempTextView5;
+    private TextView dailyTempTextView6;
+    private TextView dailyTempTextView7;
+
+    private ImageView dailyImageView1;
+    private ImageView dailyImageView2;
+    private ImageView dailyImageView3;
+    private ImageView dailyImageView4;
+    private ImageView dailyImageView5;
+    private ImageView dailyImageView6;
+    private ImageView dailyImageView7;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +106,28 @@ public class MainActivity extends AppCompatActivity {
         hourlyIconImageView3 = findViewById(R.id.hourlyIconImageView3);
         hourlyIconImageView4 = findViewById(R.id.hourlyIconImageView4);
         hourlyIconImageView5 = findViewById(R.id.hourlyIconImageView5);
+        dailyTextView1 = findViewById(R.id.dailyTextView1);
+        dailyTextView2 = findViewById(R.id.dailyTextView2);
+        dailyTextView3 = findViewById(R.id.dailyTextView3);
+        dailyTextView4 = findViewById(R.id.dailyTextView4);
+        dailyTextView5 = findViewById(R.id.dailyTextView5);
+        dailyTextView6 = findViewById(R.id.dailyTextView6);
+        dailyTextView7 = findViewById(R.id.dailyTextView7);
+        dailyTempTextView1 = findViewById(R.id.dailyTempTextView1);
+        dailyTempTextView2 = findViewById(R.id.dailyTempTextView2);
+        dailyTempTextView3 = findViewById(R.id.dailyTempTextView3);
+        dailyTempTextView4 = findViewById(R.id.dailyTempTextView4);
+        dailyTempTextView5 = findViewById(R.id.dailyTempTextView5);
+        dailyTempTextView6 = findViewById(R.id.dailyTempTextView6);
+        dailyTempTextView7 = findViewById(R.id.dailyTempTextView7);
+        dailyImageView1 = findViewById(R.id.dailyImageView1);
+        dailyImageView2 = findViewById(R.id.dailyImageView2);
+        dailyImageView3 = findViewById(R.id.dailyImageView3);
+        dailyImageView4 = findViewById(R.id.dailyImageView4);
+        dailyImageView5 = findViewById(R.id.dailyImageView5);
+        dailyImageView6 = findViewById(R.id.dailyImageView6);
+        dailyImageView7 = findViewById(R.id.dailyImageView7);
+
         citySearchButton.setOnClickListener(view -> {
             //display toast message if city input is invalid
             if(citySearchField.getText().toString().trim().equals("")) {
@@ -121,10 +169,10 @@ public class MainActivity extends AppCompatActivity {
                 hourlyTimeTextView5.setText(Helpers.getTimeFromUTC(weatherData.getHourlyTimeStamp(5), weatherData.getTimezone()));
 
                 hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(1)));
-                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(2)));
-                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(3)));
-                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(4)));
-                hourlyTempTextView1.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(5)));
+                hourlyTempTextView2.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(2)));
+                hourlyTempTextView3.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(3)));
+                hourlyTempTextView4.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(4)));
+                hourlyTempTextView5.setText(Helpers.kelvinToF(weatherData.getHourlyTemp(5)));
 
                 hourlyIconImageView1.setImageResource(hourlyIconImageView1.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(1), "drawable", hourlyIconImageView1.getContext().getPackageName()));
                 hourlyIconImageView2.setImageResource(hourlyIconImageView2.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(2), "drawable", hourlyIconImageView2.getContext().getPackageName()));
@@ -132,6 +180,29 @@ public class MainActivity extends AppCompatActivity {
                 hourlyIconImageView4.setImageResource(hourlyIconImageView4.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(4), "drawable", hourlyIconImageView4.getContext().getPackageName()));
                 hourlyIconImageView5.setImageResource(hourlyIconImageView5.getContext().getResources().getIdentifier(weatherData.getHourlyIcon(5), "drawable", hourlyIconImageView5.getContext().getPackageName()));
 
+                dailyTextView1.setText("Today");
+                dailyTextView2.setText(Helpers.getTimeFromUTCDayName(weatherData.getDailyTimeStamp(1), weatherData.getTimezone()));
+                dailyTextView3.setText(Helpers.getTimeFromUTCDayName(weatherData.getDailyTimeStamp(2), weatherData.getTimezone()));
+                dailyTextView4.setText(Helpers.getTimeFromUTCDayName(weatherData.getDailyTimeStamp(3), weatherData.getTimezone()));
+                dailyTextView5.setText(Helpers.getTimeFromUTCDayName(weatherData.getDailyTimeStamp(4), weatherData.getTimezone()));
+                dailyTextView6.setText(Helpers.getTimeFromUTCDayName(weatherData.getDailyTimeStamp(5), weatherData.getTimezone()));
+                dailyTextView7.setText(Helpers.getTimeFromUTCDayName(weatherData.getDailyTimeStamp(6), weatherData.getTimezone()));
+
+                dailyTempTextView1.setText(weatherData.getDailyMinMaxTemp(0));
+                dailyTempTextView2.setText(weatherData.getDailyMinMaxTemp(1));
+                dailyTempTextView3.setText(weatherData.getDailyMinMaxTemp(2));
+                dailyTempTextView4.setText(weatherData.getDailyMinMaxTemp(3));
+                dailyTempTextView5.setText(weatherData.getDailyMinMaxTemp(4));
+                dailyTempTextView6.setText(weatherData.getDailyMinMaxTemp(5));
+                dailyTempTextView7.setText(weatherData.getDailyMinMaxTemp(6));
+
+                dailyImageView1.setImageResource(dailyImageView1.getContext().getResources().getIdentifier(weatherData.getDailyIcon(0), "drawable", dailyImageView1.getContext().getPackageName()));
+                dailyImageView2.setImageResource(dailyImageView2.getContext().getResources().getIdentifier(weatherData.getDailyIcon(1), "drawable", dailyImageView2.getContext().getPackageName()));
+                dailyImageView3.setImageResource(dailyImageView3.getContext().getResources().getIdentifier(weatherData.getDailyIcon(2), "drawable", dailyImageView3.getContext().getPackageName()));
+                dailyImageView4.setImageResource(dailyImageView4.getContext().getResources().getIdentifier(weatherData.getDailyIcon(3), "drawable", dailyImageView4.getContext().getPackageName()));
+                dailyImageView5.setImageResource(dailyImageView5.getContext().getResources().getIdentifier(weatherData.getDailyIcon(4), "drawable", dailyImageView5.getContext().getPackageName()));
+                dailyImageView6.setImageResource(dailyImageView6.getContext().getResources().getIdentifier(weatherData.getDailyIcon(5), "drawable", dailyImageView6.getContext().getPackageName()));
+                dailyImageView7.setImageResource(dailyImageView7.getContext().getResources().getIdentifier(weatherData.getDailyIcon(6), "drawable", dailyImageView7.getContext().getPackageName()));
 
 
 

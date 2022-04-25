@@ -83,9 +83,9 @@ public class Helpers {
         String formatted = format.format(date);
         return formatted;
     }
-    public static String getTimeFromUTCShort(Long dt, String timezone){
+    public static String getTimeFromUTCDayName(Long dt, String timezone){
         Date date = new Date(dt * 1000);
-        DateFormat format = new SimpleDateFormat("hh aa");
+        DateFormat format = new SimpleDateFormat("EEE");
         format.setTimeZone(TimeZone.getTimeZone(timezone));
         String formatted = format.format(date);
         return formatted;
