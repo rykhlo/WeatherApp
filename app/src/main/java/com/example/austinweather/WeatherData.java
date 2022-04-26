@@ -13,6 +13,7 @@ import java.util.List;
 
 public class WeatherData {
     private String city;
+    private String state;
     private String timezone;
     private Integer timezone_offset;
     private WeatherState current;
@@ -49,7 +50,12 @@ public class WeatherData {
     public void setCity(String city){
         this.city = city;
     }
-    public String getCity(){  return city.substring(0, 1).toUpperCase() + city.substring(1); }
+
+    public void setState(String state) { this.state = state; }
+
+    public String getCity(){  return city; }
+
+    public String getState() {return state; }
 
     public Double getCurrentTemp() { return current.temp; }
 

@@ -6,11 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -24,7 +31,82 @@
         app:layout_constraintVertical_bias="0.0"
         tools:context=".MainActivity">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
+            >
+
+            <EditText
+                android:id="@+id/intoEditText"
+                android:layout_width="261dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="212dp"
+                android:background="@null"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:text="Welcome to the weather app! Search for a city to find out about weather!"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/citySearchField" />
+
+            <ImageView
+                android:id="@+id/brynImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-9000dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/citySearchField"
+                app:srcCompat="@drawable/_bryn" />
+
+
+            <AutoCompleteTextView
+                android:id="@+id/citySearchField"
+                android:layout_width="378dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="Search for city"
+                android:paddingLeft="30dp"
+
+                app:iconifiedByDefault="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/citySearchButton"
+                android:layout_width="34dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="36dp"
+                android:background="@drawable/icons8_google_web_search_50"
+                app:layout_constraintEnd_toEndOf="@+id/citySearchField"
+                app:layout_constraintTop_toTopOf="@+id/citySearchField" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainConstraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+
+            >
 
 
             <androidx.cardview.widget.CardView
@@ -74,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="92dp"
-                android:text="Austin, TX"
+                android:text="Austin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                 android:textColor="@color/darkPurpleish"
                 android:textSize="35dp"
@@ -310,7 +392,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="192dp"
                 android:text="clear sky"
-                app:layout_constraintStart_toStartOf="@+id/currentTimeTextView"
+                app:layout_constraintEnd_toEndOf="@+id/weatherIconImageView"
+                app:layout_constraintStart_toStartOf="@+id/weatherIconImageView"
                 app:layout_constraintTop_toTopOf="@+id/weatherIconImageView" />
 
             <TextView
@@ -320,7 +403,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="28dp"
                 android:text="10:40AM"
-                android:textColor="#C05553"
+                android:textColor="#939393"
                 android:textSize="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/cityStateTextView" />
@@ -353,10 +436,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="56dp"
                 android:text="86°F"
                 android:textColor="@color/black"
-                android:textSize="40dp"
+                android:textSize="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityStateTextView" />
 
@@ -376,38 +459,12 @@
                 android:id="@+id/tempCTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
                 android:layout_marginTop="52dp"
                 android:text="25°C"
                 android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="@+id/tempFTextView"
+                app:layout_constraintEnd_toEndOf="@+id/tempFTextView"
                 app:layout_constraintTop_toTopOf="@+id/tempFTextView" />
 
-
-            <AutoCompleteTextView
-                android:id="@+id/citySearchField"
-                android:layout_width="347dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape"
-
-                android:hint="Select City"
-                android:paddingLeft="30dp"
-
-                android:shadowRadius="@integer/material_motion_duration_long_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/citySearchButton"
-                android:layout_width="34dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="36dp"
-                android:background="@drawable/icons8_google_web_search_50"
-                app:layout_constraintEnd_toEndOf="@+id/citySearchField"
-                app:layout_constraintTop_toTopOf="@+id/citySearchField" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/dailyCardView1"
@@ -654,6 +711,18 @@
 
                     app:srcCompat="@drawable/_11d" />
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/stateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Texas"
+                app:layout_constraintEnd_toEndOf="@+id/cityStateTextView"
+                app:layout_constraintStart_toStartOf="@+id/cityStateTextView"
+                app:layout_constraintTop_toBottomOf="@+id/cityStateTextView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

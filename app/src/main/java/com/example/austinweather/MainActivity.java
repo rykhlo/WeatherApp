@@ -1,6 +1,7 @@
 package com.example.austinweather;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     private String APIkey = "25a117ed164148fa411a7c4348327156";
     private TextView cityStateTextView;
+    private TextView stateTextView;
     private TextView tempCTextView;
     private TextView tempFTextView;
     private TextView currentTimeTextView;
@@ -74,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
     private ImageView dailyImageView6;
     private ImageView dailyImageView7;
 
+    private ConstraintLayout mainConstaintLayout;
+    private ImageView brynImageView;
+    private EditText introEditText;
+
 
 
     @Override
@@ -88,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         humidityTextView = findViewById(R.id.humidityTextView);
         windSpeedTextView = findViewById(R.id.windSpeedTextView);
         pressureTextView = findViewById(R.id.pressureTextView);
+        stateTextView = findViewById(R.id.stateTextView);
         weatherDescriptionTextView = findViewById(R.id.weatherDescriptionTextView);
         weatherIconImageView = findViewById(R.id.weatherIconImageView);
         currentTimeTextView = findViewById(R.id.currentTimeTextView);
@@ -127,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
         dailyImageView5 = findViewById(R.id.dailyImageView5);
         dailyImageView6 = findViewById(R.id.dailyImageView6);
         dailyImageView7 = findViewById(R.id.dailyImageView7);
+        mainConstaintLayout = findViewById(R.id.mainConstraintLayout);
+        brynImageView = findViewById(R.id.brynImageView);
+        introEditText = findViewById(R.id.intoEditText);
 
         citySearchButton.setOnClickListener(view -> {
             //display toast message if city input is invalid
@@ -159,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 humidityTextView.setText(weatherData.getCurrentHumidity());
                 windSpeedTextView.setText(weatherData.getCurrentWindSpeed());
                 pressureTextView.setText(weatherData.getCurrentPressure());
+                stateTextView.setText(weatherData.getState());
 
                 weatherIconImageView.setImageResource(weatherIconImageView.getContext().getResources().getIdentifier(weatherData.getCurrentIcon(), "drawable", weatherIconImageView.getContext().getPackageName()));
 
@@ -204,7 +216,9 @@ public class MainActivity extends AppCompatActivity {
                 dailyImageView6.setImageResource(dailyImageView6.getContext().getResources().getIdentifier(weatherData.getDailyIcon(5), "drawable", dailyImageView6.getContext().getPackageName()));
                 dailyImageView7.setImageResource(dailyImageView7.getContext().getResources().getIdentifier(weatherData.getDailyIcon(6), "drawable", dailyImageView7.getContext().getPackageName()));
 
-
+                mainConstaintLayout.setVisibility(View.VISIBLE);
+                brynImageView.setVisibility(View.GONE);
+                introEditText.setVisibility(View.GONE);
 
             }
             catch (NullPointerException e){
